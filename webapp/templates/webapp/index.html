@@ -1,9 +1,20 @@
-{% if latest_product_list %}
-    <ul>
-    {% for product in latest_product_list %}
-        <li><a href="{% url 'webapp:detail' product.id %}">{{ product.name }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No products are available.</p>
-{% endif %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Overcloud</title>
+        <script src="index.js"></script>
+    </head>
+    <body>
+        <h1 style="color: blue; text-align: center;">Overcloud</h1>
+        <button id="signIn">Sign in</button>>
+        {% if latest_product_list %}
+        <ul>
+        {% for product in latest_product_list %}
+            <li><a href="{% url 'webapp:detail' product.id %}">{{ product.name }}</a></li>
+        {% endfor %}
+        </ul>
+        {% else %}
+            <p>No products are available.</p>
+        {% endif %}
+    </body>
+<html>
