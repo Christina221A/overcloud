@@ -14,3 +14,6 @@ def index(request):
 def detail(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     return render(request, 'webapp/detail.html', {'product': product})
+
+def signIn(request):
+    return render(request, 'webapp/signIn.html')

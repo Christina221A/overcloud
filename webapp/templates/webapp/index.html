@@ -2,11 +2,12 @@
 <html lang="en">
     <head>
         <title>Overcloud</title>
-        <script src="index.js"></script>
+        {% load static %}
+        <script src="{% static 'js/index.js' %}" ></script>
     </head>
     <body>
         <h1 style="color: blue; text-align: center;">Overcloud</h1>
-        <button id="signIn">Sign in</button>>
+        <button id="signIn">Sign in</button>
         {% if latest_product_list %}
         <ul>
         {% for product in latest_product_list %}
