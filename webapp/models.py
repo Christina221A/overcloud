@@ -10,3 +10,5 @@ class Product(models.Model):
     name = models.CharField(max_length=200)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     sort = models.IntegerField(default=0) #drink:0, food:1
+
+        
