@@ -9,25 +9,25 @@
 {% block content %}
     <div class="container">
         <div class="col-md-4 col-md-offset-4">
-          <form class='form-login' action="/login/login/" method="POST">
+            <form class='form-login' action="/login/login/" method="POST">
 
-            {% if message %}
-                <div class="alert alert-warning">{{ message }}</div>
-            {% endif %}
+                {% if message %}
+                    <div class="alert alert-warning">{{ message }}</div>
+                {% endif %}
 
-            {% csrf_token %} <!-- dajango自带的防CSRF（跨站点伪造请求） -->
-              <h2 class="text-center">Sign in</h2>
+                {% csrf_token %} <!-- dajango自带的防CSRF（跨站点伪造请求） -->
+                <h2 class="text-center">Sign in</h2>
                 <div class="form-group">
-                  {{ login_form.username.label_tag }}
-                  {{ login_form.username}}
+                    {{ login_form.username.label_tag }}
+                    {{ login_form.username }}
                 </div>
                 <div class="form-group">
-                  {{ login_form.password.label_tag }}
-                  {{ login_form.password }}
+                    {{ login_form.password.label_tag }}
+                    {{ login_form.password }}
                 </div>
-              <button type="reset" class="btn btn-default pull-left">Reset</button>
-              <button type="submit" class="btn btn-primary pull-right">Sign in</button>
-          </form>
+                <button type="reset" class="btn btn-default pull-left">Reset</button>
+                <button type="submit" class="btn btn-primary pull-right">Sign in</button>
+            </form>
         </div>
     </div> <!-- /container -->
 {% endblock %}
