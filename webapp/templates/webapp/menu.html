@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Menu{% endblock %}
+{% block scripts %}
+    <script src="{% static 'webapp/js/bootstrap-input-spinner.js' %}"></script>
+    <script>
+    $("input[type='number']").inputSpinner();
+    </script>
+
+{% endblock %}
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="span1">
+                <!--边栏内容开始-->
+                <div class="bg-light border-right" id="sidebar-wrapper">
+                  <div class="list-group list-group-flush">
+                    <a href="#" class="list-group-item list-group-item-action bg-light">Drinks</a>
+                    <a href="#" class="list-group-item list-group-item-action bg-light">Food</a>
+                  </div>
+                </div>
+                <!--边栏内容结束-->
+            </div>
+            <div class="span10">
+                <!--主体内容-->
+
+                <ul>
+                {% for product in latest_product_list %}
+                    <img src="{%  static 'img/icon-dark.png' %}" class="img-thumbnail" alt="product image">
+                    <li>{{ product.name }}</li>
+                    <input type="number" value="0" min="0" max="99" step="1" style="display: none;">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <button style="min-width: 2.5rem" class="btn btn-decrement btn-outline-secondary btn-minus" type="button">
+                                <strong>−</strong></button></div>
+                        <input type="text" inputmode="decimal" style="text-align: center" class="form-control" placeholder="0">
+                        <div class="input-group-append">
+                            <button style="min-width: 2.5rem" class="btn btn-increment btn-outline-secondary btn-plus" type="button">
+                                <strong>+</strong>
+                            </button>
+                        </div>
+                    </div>
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

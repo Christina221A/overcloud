@@ -1,3 +1,3 @@
 document.addEventListener('DOMContentLoaded', function(){
-    document.querySelector('#signIn').onclick = "window.location='/signIn.html';";
+    document.querySelector('#signIn').onclick = "window.location='/sign_in.html';";
 });
