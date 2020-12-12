@@ -14,4 +14,8 @@ urlpatterns = [
     path('cart/', views.cart, name='cart'),
     # ex: /webapp/menu
     path('menu/', views.menu, name='menu'),
+    # ex: /webapp/add_count
+    path('add_count/', views.add_count, name='add_count'),
+    # ex: /webapp/min_count
+    path('min_count/', views.min_count, name='min_count'),
 ]

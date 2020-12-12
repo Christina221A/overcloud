@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Product
+from django.http import HttpResponse
+import json, uuid
 
 
 def index(request):
@@ -29,6 +31,26 @@ def menu(request):
         'latest_product_list': latest_product_list,
     }
     return render(request, 'webapp/menu.html', context)
+
+
+def add_count(request):
+    quantity = request.POST.get('nowCount')
+    name = request.POST.get('name')
+    request.set_cookie('cart_id', uuid.uuid4())
+    request.set_cookie('quantity', quantity)
+    request.set_cookie('name', name)
+    print('add_count:  ', request.POST.get('nowCount'))
+    print('add_name:  ', request.POST.get('name'))
+    data = {'result': 'true'}
+    return HttpResponse(json.dumps(data))
+
+
+def min_count(request):
+    print('min_count:  ', request.POST.get('nowCount'))
+    print('min_name:  ', request.POST.get('name'))
+    data = {'result': 'true'}
+    return HttpResponse(json.dumps(data))
+
 
 
 

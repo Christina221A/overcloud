@@ -1,27 +1,40 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}登录{% endblock %}
+{% block title %}Index{% endblock %}
 {% block css %}
-    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <link href="{% static 'bootstrap-4.3.1-dist/css/bootstrap.min.css' %}" rel="stylesheet">
 {% endblock %}
 
+{% block content %}
+      <div id="demo" class="carousel slide" data-ride="carousel">
 
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>Overcloud</title>
-        <script src="{% static 'js/index.js' %}" ></script>
-    </head>
-    <body>
-        <h1 style="color: blue; text-align: center;">Overcloud</h1>
-        {% if latest_product_list %}
-        <ul>
-        {% for product in latest_product_list %}
-            <li><a href="{% url 'webapp:detail' product.id %}">{{ product.name }}</a></li>
-        {% endfor %}
-        </ul>
-        {% else %}
-            <p>No products are available.</p>
-        {% endif %}
-    </body>
-<html>
+    <!-- Indicators -->
+    <ul class="carousel-indicators">
+      <li data-target="#demo" data-slide-to="0" class="active"></li>
+      <li data-target="#demo" data-slide-to="1"></li>
+      <li data-target="#demo" data-slide-to="2"></li>
+    </ul>
+
+    <!-- The slideshow -->
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{% static 'img/slide1.jpg' %}" alt="slide1" width="1400" height="800">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'img/slide2.jpg' %}" alt="slide2" width="1400" height="800">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'img/slide3.jpg' %}" alt="slide3" width="1400" height="800">
+      </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#demo" data-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </a>
+  </div>
+    <script type="text/javascript">$('#demo').carousel();</script>
+{% endblock %}

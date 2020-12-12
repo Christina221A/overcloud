@@ -27,7 +27,10 @@ class Product(models.Model):
     name = models.CharField(max_length=256)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     sort = models.IntegerField(default=0)  # drink:0, food:1
-    image = models.ImageField(upload_to=product_media_path, default="img/icon-dark.png")
+    image = ProcessedImageField(upload_to=product_media_path,
+                                processors=[ResizeToFill(100, 100)],
+                                format='PNG',
+                                options={'quality': 100})
 
     def __str__(self):
         return self.name
