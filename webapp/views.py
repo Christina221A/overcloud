@@ -1,5 +1,4 @@
 from django.shortcuts import render, get_object_or_404
-
 from .models import Product
 
 
@@ -30,3 +29,7 @@ def menu(request):
         'latest_product_list': latest_product_list,
     }
     return render(request, 'webapp/menu.html', context)
+
+
+
+

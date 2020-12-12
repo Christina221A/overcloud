@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'imagekit',
     'login.apps.LoginConfig',
     'webapp.apps.WebappConfig',
     'django.contrib.admin',
@@ -130,5 +131,5 @@ STATICFILES_DIRS = [
     'static/',
 ]
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "static/media")
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = '/media/'
