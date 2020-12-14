@@ -12,17 +12,27 @@
     <link href="{% static 'bootstrap-4.3.1-dist/css/bootstrap.min.css' %}" rel="stylesheet">
 
     <script type="text/javascript">
+    function guid() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            let r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+            return v.toString(16);
+        });
+    }
+
     $(function (){
+        let cart_id = guid();
         $(".min").click(function (){
             let nowCount = $(this).parent().find("input").val();
             let name = $(this).parent().find("input").attr("data");
+
             nowCount--;
             if (nowCount >= 0) {
               $(this).parent().find("input").val(nowCount);
                 $.ajax({
                     url:'/webapp/min_count/', // 接口路径
                     type:'POST',
-                    data:{'nowCount':nowCount, 'name':name, 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+                    data:{'nowCount':nowCount, 'name':name, 'cart_id':cart_id,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'},
                     dataType:'json',
                     success:function(result){
                         console.log(result);
@@ -44,7 +54,8 @@
             $.ajax({
                 url:'/webapp/add_count/', // 接口路
                 type:'POST',
-                data:{'nowCount':nowCount, 'name':name, 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+                data:{'nowCount':nowCount, 'name':name, 'cart_id':cart_id,
+                    'csrfmiddlewaretoken': '{{ csrf_token }}'},
                 dataType:'json',
                 success:function(result){
                     console.log(result);
