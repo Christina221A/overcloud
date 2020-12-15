@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Product
+from .models import Product, CartDetail
 from django.http import HttpResponse
 import json, uuid
 
@@ -33,10 +33,26 @@ def menu(request):
     return render(request, 'webapp/menu.html', context)
 
 
+def alter_cd(quantity, product, cart_id):
+    if quantity and product and cart_id:
+        c_latest = CartDetail(quantity=quantity, product_id=product, cart_id=cart_id)
+        if CartDetail.objects.filter(cart_id=cart_id, product_id=product):
+            CartDetail.objects.filter(cart_id=cart_id, product_id=product).update(
+                product_id=product, quantity=quantity)
+            print('successfully updated')
+        else:
+            c_latest.save()
+            print('successfully saved a new cart detail')
+    else:
+        print('error, null exists')
+
+
 def add_count(request):
     quantity = request.POST.get('nowCount')
     name = request.POST.get('name')
+    product = Product.objects.get(name=name)
     cart_id = request.POST.get('cart_id')
+    alter_cd(quantity, product, cart_id)
     print('add_count:  ', quantity)
     print('add_name:  ', name)
     print('cart_id:  ', cart_id)
@@ -47,7 +63,9 @@ def add_count(request):
 def min_count(request):
     quantity = request.POST.get('nowCount')
     name = request.POST.get('name')
+    product = Product.objects.get(name=name)
     cart_id = request.POST.get('cart_id')
+    alter_cd(quantity, product, cart_id)
     print('min_count:  ', quantity)
     print('min_name:  ', name)
     print('cart_id:  ', cart_id)
