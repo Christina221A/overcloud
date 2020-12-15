@@ -22,7 +22,12 @@ def sign_in(request):
 
 
 def cart(request):
-    return render(request, 'webapp/cart.html')
+    cart_id = request.session.get('cart_id')
+    latest_cart_list = CartDetail.objects.filter(cart_id=cart_id)
+    context = {
+        'latest_cart_list': latest_cart_list,
+    }
+    return render(request, 'webapp/cart.html', context)
 
 
 def menu(request):
@@ -53,6 +58,7 @@ def add_count(request):
     product = Product.objects.get(name=name)
     cart_id = request.POST.get('cart_id')
     alter_cd(quantity, product, cart_id)
+    request.session['cart_id'] = cart_id
     print('add_count:  ', quantity)
     print('add_name:  ', name)
     print('cart_id:  ', cart_id)
