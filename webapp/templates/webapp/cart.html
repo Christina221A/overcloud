@@ -1,21 +1,31 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}Cart{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/webapp/css/cart.css' %}">
+{% endblock %}
 {% block content %}
     <div class="container-fluid">
-        <!--主体内容-->
-        {% for cd in latest_cart_list %}
-            <div class="row-fluid mx-md-5" >
-              <ul class="list-inline">
-                <li class="list-inline-item">
-                    <img src="/media/{{ cd.product_id.image }}" class="rounded-circle" alt="{{ cd.product_id.name }}">
-                </li>
-                <li class="list-inline-item">{{ cd.product_id.name }}</li>
-                <li class="list-inline-item" style="color: #716e77">Quantity: </li>
-                <li class="list-inline-item"></li>{{ cd.quantity }}
-              </ul>
-              <hr/>
+        <div class="flex-column">
+            <div class="col-6">
+                <h2>Review Order</h2>
             </div>
-        {% endfor %}
+        </div>
+        <!--主体内容-->
+        <div class="col-md-6">
+            {% for cd in latest_cart_list %}
+                    <div class="row-fluid gx-5 mt-3 mb-3" >
+                      <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <img src="/media/{{ cd.product_id.image }}" class="rounded-circle" alt="{{ cd.product_id.name }}">
+                        </li>
+                        <li class="list-inline-item">{{ cd.product_id.name }}</li>
+                        <li class="list-inline-item" style="color: #716e77">Quantity: </li>
+                        <li class="list-inline-item"></li>{{ cd.quantity }}
+                      </ul>
+                      <hr/>
+                    </div>
+                {% endfor %}
+        </div>
     </div>
 {% endblock %}
