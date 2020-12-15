@@ -18,8 +18,8 @@ class Cart(models.Model):  # 购物车主表
 
 
 class CartDetail(models.Model):  # 购物车明细
-    cart_id = models.IntegerField()  # 对应 Cart 的id
-    product_id = models.IntegerField()
+    cart_id = models.CharField(max_length=128)  # 对应 Cart 的id
+    product_id = models.ForeignKey('Product', on_delete=models.CASCADE)
     quantity = models.IntegerField(default=0)
 
 
