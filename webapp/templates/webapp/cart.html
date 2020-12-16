@@ -6,26 +6,31 @@
 {% endblock %}
 {% block content %}
     <div class="container-fluid">
-        <div class="flex-column">
-            <div class="col-6">
-                <h2>Review Order</h2>
+    <div class="row">
+        <div class="col-lg-4" style="background-color: #e79686;">
+            <div class="d-flex flex-grow-0 flex-column">
+                <div class="text-center mt-5 text-white"><h2>Review Order</h2></div>
             </div>
         </div>
         <!--主体内容-->
-        <div class="col-md-6">
+        <div class="col-lg-8" style="background-color: #a39391;">
             {% for cd in latest_cart_list %}
-                    <div class="row-fluid gx-5 mt-3 mb-3" >
-                      <ul class="list-inline">
+                <div class="row-fluid gx-5 mt-3 mb-3">
+                    <ul class="list-inline">
                         <li class="list-inline-item">
-                            <img src="/media/{{ cd.product_id.image }}" class="rounded-circle" alt="{{ cd.product_id.name }}">
+                            <img src="/media/{{ cd.product_id.image }}" class="rounded-circle"
+                                 alt="{{ cd.product_id.name }}">
                         </li>
                         <li class="list-inline-item">{{ cd.product_id.name }}</li>
-                        <li class="list-inline-item" style="color: #716e77">Quantity: </li>
-                        <li class="list-inline-item"></li>{{ cd.quantity }}
-                      </ul>
-                      <hr/>
-                    </div>
-                {% endfor %}
+                        <li class="list-inline-item" style="color: #716e77">Quantity:</li>
+                        <li class="list-inline-item"></li>
+                        {{ cd.quantity }}
+                        <li class="list-inline-item">{{ cd.product_id.price }} * {{ cd.quantity }}</li>
+                    </ul>
+                    <hr/>
+                </div>
+            {% endfor %}
         </div>
+    </div>
     </div>
 {% endblock %}
