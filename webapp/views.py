@@ -24,8 +24,17 @@ def sign_in(request):
 def cart(request):
     cart_id = request.session.get('cart_id')
     latest_cart_list = CartDetail.objects.filter(cart_id=cart_id)
+
+    cds = CartDetail.objects.filter(cart_id=cart_id).values()
+    total = 0
+    for cd in latest_cart_list:
+        cd_total = cd.quantity * cd.product_id.price  # 购物车内某一种商品的总价
+        total += cd_total
+        print('cd_total:', cd_total)
+        #print('total:', total)
     context = {
         'latest_cart_list': latest_cart_list,
+        'total': total,
     }
     return render(request, 'webapp/cart.html', context)
 
