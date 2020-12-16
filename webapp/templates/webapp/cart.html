@@ -4,6 +4,17 @@
 {% block css %}
     <link rel="stylesheet" href="{% static 'css/webapp/css/cart.css' %}">
 {% endblock %}
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let q = document.querySelector('#quantity').innerHTML;
+            let p = document.querySelector('#price').innerHTML;
+            console.log('q: ', q);
+            console.log('p: ', p);
+            let cd_total = parseFloat(q)*parseFloat(p);
+            document.querySelector('#cd_total').innerHTML=cd_total.toString();
+            console.log('cd_total_js: ', cd_total);
+        });
+</script>
 {% block content %}
     <div class="container-fluid">
     <div class="row">
@@ -22,15 +33,19 @@
                                  alt="{{ cd.product_id.name }}">
                         </li>
                         <li class="list-inline-item">{{ cd.product_id.name }}</li>
-                        <li class="list-inline-item" style="color: #716e77">Quantity:</li>
-                        <li class="list-inline-item"></li>
-                        {{ cd.quantity }}
-                        <li class="list-inline-item">{{ cd.product_id.price }} * {{ cd.quantity }}</li>
+                        <li class="list-inline-item" id="price">{{ cd.product_id.price }}</li>
+                        <li class="list-inline-item" id="quantity">{{ cd.quantity }}</li>
+                        <li class="list-inline-item" id="cd_total">{% widthratio cd.product_id.price 1 cd.quantity %}¥</li>
+
                     </ul>
                     <hr/>
-                </div>
             {% endfor %}
+            <div class="text-right"><h2>Total: {{ total }}¥</h2></div>
+            <hr/></div>
         </div>
+    <div class="row">
+
+    </div>
     </div>
     </div>
 {% endblock %}
