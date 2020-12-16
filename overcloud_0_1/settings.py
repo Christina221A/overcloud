@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'simpleui',
     'imagekit',
     'login.apps.LoginConfig',
     'webapp.apps.WebappConfig',
